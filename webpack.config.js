@@ -4,6 +4,7 @@ var webpack = require("webpack");
 module.exports = {
     entry: [
         "babel-polyfill",
+        ".src/styles/main.styl",
         "./src/main",
         "webpack-dev-server/client?http://localhost:8080"
     ],
@@ -24,6 +25,10 @@ module.exports = {
                 query: {
                     presets: ["es2015"]
                 }
+            },
+            {
+                test: /\.styl$/, 
+                loader: "style-loader!css-loader!stylus-loader" 
             }
         ]
     },
