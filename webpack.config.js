@@ -4,7 +4,7 @@ var webpack = require("webpack");
 module.exports = {
     entry: [
         "babel-polyfill",
-        ".src/styles/main.styl",
+        "./src/styles/main.styl",
         "./src/main",
         "webpack-dev-server/client?http://localhost:8080"
     ],
@@ -12,6 +12,7 @@ module.exports = {
         publicPath: "/",
         filename: "main.js"
     },
+    debug: true,
     devtool: "source-map",
     devServer: {
         contentBase: "./src"
@@ -24,13 +25,19 @@ module.exports = {
                 loader: "babel-loader",
                 query: {
                     presets: ["es2015"]
-                }
+                },
+                exclude: [
+                    path.resolve(__dirname, "node_modules")
+                ]
             },
-            {
+            { 
                 test: /\.styl$/, 
-                loader: "style-loader!css-loader!stylus-loader" 
+                loader: "style-loader!css-loader!stylus-loader"
             }
-        ]
-    },
-    debug: true
+        ],
+        resolve: {
+            extensions: ["", ".js", ".styl"],
+            modulesDirectories: ["src", "node_modules"]
+        }
+    }
 };
