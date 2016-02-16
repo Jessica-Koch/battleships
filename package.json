@@ -4,8 +4,8 @@
   "description": "play battleship against AI",
   "main": "src/main.js",
   "scripts": {
-    "start": "node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "repository": {
     "type": "git",
