@@ -17,3 +17,12 @@ for(i = 0; i < grid.length; i++){
     }
     p1Board.appendChild(row);
 }
+
+
+var fleet = [
+    {id: 1, shipName: "aircraft carrier", shipSize: 5, shipPosition:[]}, 
+    {id: 2, shipName: "battleship", shipSize: 4, shipPosition:[]}, 
+    {id: 3, shipName: "submarine", shipSize: 3, shipPosition:[]}, 
+    {id: 4, shipName: "cruiser", shipSize: 3, shipPosition:[]},   
+    {id: 5, shipName: "destroyer", shipSize: 2, shipPosition:[]}
+];
