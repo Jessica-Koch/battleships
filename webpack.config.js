@@ -3,12 +3,12 @@ var webpack = require("webpack");
 var buildPath = path.resolve(__dirname, "build");
 var mainPath = path.resolve(__dirname, "src", "main.js");
 
-var config = {
+module.exports = {
     entry: [
         "babel-polyfill",
         "./src/styles/main.styl",
         mainPath,
-        "webpack-dev-server/client?http://localhost:8080"
+        "webpack-dev-server/client?http://localhost:8080/"
     ],
     output: {
         path: buildPath,
@@ -44,4 +44,3 @@ var config = {
     }
 };
 
-module.exports = config;

@@ -5669,7 +5669,7 @@
 
 	"use strict";
 	
-	__webpack_require__(196);
+	document.write(__webpack_require__(196));
 
 /***/ },
 /* 196 */
@@ -5800,7 +5800,7 @@
 		}
 	}
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, "?http://localhost:8080"))
+	/* WEBPACK VAR INJECTION */}.call(exports, "?http://localhost:8080/"))
 
 /***/ },
 /* 198 */
