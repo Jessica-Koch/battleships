@@ -1,16 +1,18 @@
 var path = require("path");
 var webpack = require("webpack");
+var buildPath = path.resolve(__dirname, "build");
+var mainPath = path.resolve(__dirname, "src", "main.js");
 
-module.exports = {
+var config = {
     entry: [
         "babel-polyfill",
         "./src/styles/main.styl",
-        "./src/main",
+        mainPath,
         "webpack-dev-server/client?http://localhost:8080"
     ],
     output: {
-        publicPath: "/",
-        filename: "main.js"
+        path: buildPath,
+        filename: "bundle.js"
     },
     debug: true,
     devtool: "source-map",
@@ -41,3 +43,5 @@ module.exports = {
         }
     }
 };
+
+module.exports = config;
