@@ -26,6 +26,9 @@ class Board {
             board.appendChild(row);
         });
     }
+    fire(x, y) {
+        this.grid[x][y] = "H";
+    }
 }
 var gameBoard = new Board(10, 10);
 gameBoard.drawBoard();
