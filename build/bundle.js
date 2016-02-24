@@ -5348,7 +5348,7 @@
 	
 	
 	// module
-	exports.push([module.id, "html,\nbody {\n  height: 100%;\n  min-height: 100%;\n  margin: 0;\n}\nhtml h2,\nbody h2 {\n  text-align: center;\n}\nhtml .board,\nbody .board {\n  margin: 2em;\n  -webkit-display: flex;\n  -moz-display: flex;\n  -ms-display: flex;\n  -o-display: flex;\n  display: flex;\n  -webkit-justify-content: center;\n  -moz-justify-content: center;\n  -ms-justify-content: center;\n  -o-justify-content: center;\n  justify-content: center;\n}\nhtml .board #p1-grid-table,\nbody .board #p1-grid-table {\n  background: #00f;\n  border: 2px solid #ffd700;\n}\nhtml .board #p1-grid-table td,\nbody .board #p1-grid-table td {\n  height: 3em;\n  width: 3em;\n  border: 1px solid #c0c0c0;\n  text-align: center;\n}\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  height: 100%;\n  min-height: 100%;\n  margin: 0;\n}\nhtml h2,\nbody h2 {\n  text-align: center;\n}\nhtml .board,\nbody .board {\n  margin: 2em;\n  -webkit-display: flex;\n  -moz-display: flex;\n  -ms-display: flex;\n  -o-display: flex;\n  display: flex;\n  -webkit-justify-content: center;\n  -moz-justify-content: center;\n  -ms-justify-content: center;\n  -o-justify-content: center;\n  justify-content: center;\n}\nhtml .board #p1-grid-table,\nbody .board #p1-grid-table {\n  background: #00f;\n  border: 2px solid #ffd700;\n}\nhtml .board #p1-grid-table td,\nbody .board #p1-grid-table td {\n  height: 3em;\n  width: 3em;\n  border: 1px solid #c0c0c0;\n  text-align: center;\n}\n#board span {\n  display: inline-block;\n  width: 32px;\n  height: 32px;\n}\n#board div:nth-child(odd) span:nth-child(even),\n#board div:nth-child(even) span:nth-child(odd) {\n  background-color: #000;\n}\n#board div:nth-child(even) span:nth-child(even),\n#board div:nth-child(odd) span:nth-child(odd) {\n  background-color: #c0c0c0;\n}\n", ""]);
 	
 	// exports
 
@@ -5669,7 +5669,7 @@
 
 	"use strict";
 	
-	document.write(__webpack_require__(196));
+	__webpack_require__(196);
 
 /***/ },
 /* 196 */
@@ -5677,27 +5677,62 @@
 
 	"use strict";
 	
-	var dimension = 10;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var grid = new Array(dimension);
+	// class expression defining board
+	var Board = function Board(x, y) {
+	    _classCallCheck(this, Board);
 	
-	var i, j, row, cell;
+	    this.x = x;
+	    this.y = y;
+	};
 	
-	// create table
-	var p1Board = document.getElementById("p1-board");
+	// create board
+	document.getElementById("board");
+	// board.appendChild(document.createElement("div"));
+	//
+	// for(i = 0; i < x; i++){
+	//     grid[i] = new Array(y);
+	//     row = board.appendChild(document.createElement("div"));
+	// //     row = document.createElement("tr");
+	// //     for (j = 0; j < grid[i].length; j++) {
+	// //         cell = document.createElement("td");
+	// //         cell.setAttribute("id", "" + i + j);
+	// //         row.appendChild(cell);
+	// //     }
+	// }
 	
-	for (i = 0; i < grid.length; i++) {
-	    grid[i] = new Array(dimension);
-	    row = document.createElement("tr");
-	    for (j = 0; j < grid[i].length; j++) {
-	        cell = document.createElement("td");
-	        cell.setAttribute("id", "" + i + j);
-	        row.appendChild(cell);
-	    }
-	    p1Board.appendChild(row);
+	// var p1Board = document.getElementById("p1-board");
+	
+	// for(var i = 0; i < x; i++) {
+	//     var row = document.createElement("tr");
+	//     for(var j = 0; j < y; j++) {
+	//         var cell = document.createElement("td");
+	//         cell.setAttribute("id", "(" + i +", " + j +")");
+	//         row.appendChild(cell);
+	//     }
+	//     p1Board.appendChild(row);
+	// }
+	
+	function Ship(id, shipName, shipSize) {
+	    this.id = id;
+	    this.shipName = shipName;
+	    this.shipSize = shipSize;
 	}
 	
-	var fleet = [{ id: 1, shipName: "aircraft carrier", shipSize: 5, shipPosition: [] }, { id: 2, shipName: "battleship", shipSize: 4, shipPosition: [] }, { id: 3, shipName: "submarine", shipSize: 3, shipPosition: [] }, { id: 4, shipName: "cruiser", shipSize: 3, shipPosition: [] }, { id: 5, shipName: "destroyer", shipSize: 2, shipPosition: [] }];
+	// var fleet = [
+	//     {id: 1, shipName: "aircraft carrier", shipSize: 5, shipPosition:[]},
+	//     {id: 2, shipName: "battleship", shipSize: 4, shipPosition:[]},
+	//     {id: 3, shipName: "submarine", shipSize: 3, shipPosition:[]},
+	//     {id: 4, shipName: "cruiser", shipSize: 3, shipPosition:[]},  
+	//     {id: 5, shipName: "destroyer", shipSize: 2, shipPosition:[]}
+	// ];
+	
+	function Ship(id, shipName, shipSize) {
+	    this.id = id;
+	    this.shipName = shipName;
+	    this.shipSize = shipSize;
+	};
 
 /***/ },
 /* 197 */

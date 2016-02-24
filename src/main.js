@@ -1,3 +1,3 @@
 "use strict";
 
-document.write(require("./js/board"));
+require("./js/board");
