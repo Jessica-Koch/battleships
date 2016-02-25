@@ -10,7 +10,7 @@ class Board {
         for (var x = 0; x < this._width; x++) {
             this.grid[x] = new Array(height);
             for(var y = 0; y < this._height; y++) {
-                this.grid[x][y] = {name: "(" + x + ", " + y + ")"};
+                this.grid[x][y] = {name:  x + "" + y};
             }
         }
         console.dir(this.grid);
@@ -32,6 +32,7 @@ class Board {
 var gameBoard = new Board(10, 10);
 var gameUI = new GameUI(gameBoard);
 gameUI.drawBoard();
+gameUI.displayMiss("00");
 
 
 

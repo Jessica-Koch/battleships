@@ -11,6 +11,7 @@ class GameUI {
             rowData.forEach(function(cellData) {
                 var cell = document.createElement("td");
                 cell.appendChild(document.createTextNode(cellData.name));
+                cell.setAttribute("id", cellData.name);
                 cell.addEventListener("click", function(event) {
                     event.target.style.backgroundColor = "#00cccc"
                 })
