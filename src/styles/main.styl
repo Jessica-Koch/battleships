@@ -5,7 +5,7 @@ html, body
   h2
     text-align center
   .board 
-    margin 2em
+    position relative
     -webkit-display flex
     -moz-display flex
     -ms-display flex
@@ -16,7 +16,13 @@ html, body
     -ms-justify-content center
     -o-justify-content center
     justify-content center
+    #messageArea
+      color rgb(83, 175, 19)
+      position absolute 
+      top 50px
+      left 10px
     #p1-grid-table
+      margin 2em
       background blue
       border 2px solid gold  
       td
@@ -25,7 +31,7 @@ html, body
         border 1px solid silver
         text-align center
         cursor pointer
-        .hit
-          background red
-        .miss
-          background #00cccc
+      td.hit
+        background red
+      td.miss
+        background #00cccc
