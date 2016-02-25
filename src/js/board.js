@@ -1,3 +1,5 @@
+import GameUI from "./gameUI.js";
+
 // class expression defining board
 class Board {
     constructor(width, height) {
@@ -13,39 +15,40 @@ class Board {
         }
         console.dir(this.grid);
     }
-    drawBoard() {
-        var board = document.getElementById("p1-board");
-        // create board
-        this.grid.forEach(function(rowData) {
-            var row = document.createElement("tr");
-            rowData.forEach(function(cellData) {
-                var cell = document.createElement("td");
-                cell.appendChild(document.createTextNode(cellData.name));
-                row.appendChild(cell);
-            });
-            board.appendChild(row);
-        });
+
+// function to place ships onto the grid
+    placeShips(id){
+        var area;
+        var isEmpty = false;
+        while (!isEmpty) {
+            isEmpty = true;
+            var position = Math.random();
+            
+        }
     }
     fire(x, y) {
         this.grid[x][y] = "H";
     }
 }
 var gameBoard = new Board(10, 10);
-gameBoard.drawBoard();
+var gameUI = new GameUI(gameBoard);
+gameUI.drawBoard();
 
 
-function Ship(id, shipName, shipSize) {
+
+
+function Ship(id, shipName, shipSize, shipDirection) {
+    this.occupied = [];
     this.id = id;
     this.shipName = shipName;
     this.shipSize = shipSize;
+    this.shipDirection = shipDirection;
 }
 
-
-
-// var fleet = [
-//     {id: 1, shipName: "aircraft carrier", shipSize: 5, shipPosition:[]}, 
-//     {id: 2, shipName: "battleship", shipSize: 4, shipPosition:[]}, 
-//     {id: 3, shipName: "submarine", shipSize: 3, shipPosition:[]}, 
-//     {id: 4, shipName: "cruiser", shipSize: 3, shipPosition:[]},   
-//     {id: 5, shipName: "destroyer", shipSize: 2, shipPosition:[]}
-// ];
+var fleet = [
+    {id: 1, shipName: "Aircraft Carrier", shipSize: 5}, 
+    {id: 2, shipName: "Battleship", shipSize: 4}, 
+    {id: 3, shipName: "Submarine", shipSize: 3}, 
+    {id: 4, shipName: "Cruiser", shipSize: 3},   
+    {id: 5, shipName: "Destroyer", shipSize: 2}
+];
