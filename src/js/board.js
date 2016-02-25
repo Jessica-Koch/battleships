@@ -15,7 +15,6 @@ class Board {
         }
         console.dir(this.grid);
     }
-
 // function to place ships onto the grid
     placeShips(id){
         var area;
@@ -23,12 +22,12 @@ class Board {
         while (!isEmpty) {
             isEmpty = true;
             var position = Math.random();
-            
+
         }
     }
-    fire(x, y) {
-        this.grid[x][y] = "H";
-    }
+    // fire(x, y) {
+    //     this.grid[x][y] = "H";
+    // }
 }
 var gameBoard = new Board(10, 10);
 var gameUI = new GameUI(gameBoard);
@@ -38,17 +37,16 @@ gameUI.drawBoard();
 
 
 function Ship(id, shipName, shipSize, shipDirection) {
-    this.occupied = [];
     this.id = id;
     this.shipName = shipName;
     this.shipSize = shipSize;
     this.shipDirection = shipDirection;
 }
 
-var fleet = [
-    {id: 1, shipName: "Aircraft Carrier", shipSize: 5}, 
-    {id: 2, shipName: "Battleship", shipSize: 4}, 
-    {id: 3, shipName: "Submarine", shipSize: 3}, 
-    {id: 4, shipName: "Cruiser", shipSize: 3},   
-    {id: 5, shipName: "Destroyer", shipSize: 2}
-];
+// var fleet = [
+//     {id: 1, shipName: "Aircraft Carrier", shipSize: 5}, 
+//     {id: 2, shipName: "Battleship", shipSize: 4}, 
+//     {id: 3, shipName: "Submarine", shipSize: 3}, 
+//     {id: 4, shipName: "Cruiser", shipSize: 3},   
+//     {id: 5, shipName: "Destroyer", shipSize: 2}
+// ];
