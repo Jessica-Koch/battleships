@@ -19,5 +19,17 @@ class GameUI {
             board.appendChild(row);
         });
     }
+    displayMessage(msg) {
+        var messageArea = document.getElementById("messageArea");
+        messageArea.innerHTML = msg;
+    }
+    displayHit(location) {
+        var cell = document.getElementById(location);
+        cell.setAttribute("class", "hit");
+    }
+    displayMiss(location) {
+        var cell = document.getElementById(location);
+        cell.setAttribute("class", "miss");
+    }
 }
 export {GameUI as default}
