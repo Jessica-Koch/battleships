@@ -1,4 +1,4 @@
-import {GameUI} from "./gameUI.js";
+import GameUI from "./gameUI.js";
 
 // class expression defining board
 class Board {
@@ -20,25 +20,25 @@ class Board {
             locations: ["10", "11", "12"],
             hits: ["", "", ""]
         }];
-        for (var x = 0; x < this._width; x++) {
+        for (let x = 0; x < this._width; x++) {
             this.grid[x] = new Array(height);
-            for (var y = 0; y < this._height; y++) {
+            for (let y = 0; y < this._height; y++) {
                 this.grid[x][y] = {
                     name: x + "" + y
                 };
             }
         }
-        console.dir(this.grid);
+        // console.dir(this.grid);
     }
-    fire(evt) {
-        console.log(evt);
-        for(var i = 0; i < this.numShips; i++) {
-            var ship = this.ships[i];
-            var index = ship.locations.indexOf(evt);
+    fire(guess) {
+        let i, ship, index;
+        for(i = 0; i < this.numShips; i++) {
+            ship = this.ships[i];
+            index = ship.locations.indexOf(guess);
             if (index >= 0) {
                 // We have a hit!
                 ship.hits[index] = "hit";
-                gameUI.displayHit(evt);
+                gameUI.displayHit(guess);
                 gameUI.displayMessage("HIT!")
                 if (this.isSunk(ship)) {
                     gameUI.displayMessage("You sank my battleship");
@@ -47,13 +47,14 @@ class Board {
                 return true;
             }
         }
-        gameUI.displayMiss(evt);
-        gameUI.displayMessage("You missed.");
+        GameUI.displayMiss(guess);
+        GameUI.displayMessage("You missed.");
         return false;
     }    
     isSunk(ship){
+        let i;
         // takes a ship and looks at it's locations for a hit
-        for (var i = 0; i < this.shipLength; i++) {
+        for (i = 0; i < this.shipLength; i++) {
             if(ship.hits[i] !== "hit") {
                 // if there's a location without a hit, the ship is afloat
                 return false;
@@ -63,18 +64,6 @@ class Board {
         }
     }
 }
-var gameBoard = new Board(10, 10);
-var gameUI = new GameUI(gameBoard);
-gameUI.drawBoard();
-gameBoard.fire("53");
-gameBoard.fire("06"); 
-gameBoard.fire("16");
-gameBoard.fire("26");
-gameBoard.fire("34"); 
-gameBoard.fire("24"); 
-gameBoard.fire("44");
-gameBoard.fire("12"); 
-gameBoard.fire("11"); 
-gameBoard.fire("10");
+
 
 export {Board}
