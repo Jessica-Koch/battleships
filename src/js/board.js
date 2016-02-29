@@ -1,4 +1,4 @@
-import GameUI from "./gameUI.js";
+import {GameUI} from "./gameUI.js";
 
 // class expression defining board
 class Board {
@@ -7,47 +7,73 @@ class Board {
         this._width = width;
         this._height = height;
         this.grid = new Array(this._width);
+        this.numShips = 3;
+        this.shipsSunk = 0;
+        this.shipLength = 3;
+        this.ships = [{
+            locations: ["06", "16", "26"],
+            hits: ["", "", ""]
+        }, {
+            locations: ["24", "34", "44"],
+            hits: ["", "", ""]
+        }, {
+            locations: ["10", "11", "12"],
+            hits: ["", "", ""]
+        }];
         for (var x = 0; x < this._width; x++) {
             this.grid[x] = new Array(height);
-            for(var y = 0; y < this._height; y++) {
-                this.grid[x][y] = {name:  x + "" + y};
+            for (var y = 0; y < this._height; y++) {
+                this.grid[x][y] = {
+                    name: x + "" + y
+                };
             }
         }
         console.dir(this.grid);
     }
-// function to place ships onto the grid
-    placeShips(id){
-        var area;
-        var isEmpty = false;
-        while (!isEmpty) {
-            isEmpty = true;
-            var position = Math.random();
-
+    fire(guess) {
+        for(var i = 0; i < this.numShips; i++) {
+            var ship = this.ships[i];
+            var index = ship.locations.indexOf(guess);
+            if (index >= 0) {
+                // We have a hit!
+                ship.hits[index] = "hit";
+                gameUI.displayHit(guess);
+                gameUI.displayMessage("HIT!")
+                if (this.isSunk(ship)) {
+                    gameUI.displayMessage("You sank my battleship");
+                    this.shipsSunk++;
+                }
+                return true;
+            }
+        }
+        gameUI.displayMiss(guess);
+        gameUI.displayMessage("You missed.");
+        return false;
+    }    
+    isSunk(ship){
+        // takes a ship and looks at it's locations for a hit
+        for (var i = 0; i < this.shipLength; i++) {
+            if(ship.hits[i] !== "hit") {
+                // if there's a location without a hit, the ship is afloat
+                return false;
+            }
+            // otherwise the ship is sunk
+            return true;
         }
     }
-    // fire(x, y) {
-    //     this.grid[x][y] = "H";
-    // }
 }
 var gameBoard = new Board(10, 10);
 var gameUI = new GameUI(gameBoard);
 gameUI.drawBoard();
-gameUI.displayMiss("00");
+gameBoard.fire("53");
+gameBoard.fire("06"); 
+gameBoard.fire("16");
+gameBoard.fire("26");
+gameBoard.fire("34"); 
+gameBoard.fire("24"); 
+gameBoard.fire("44");
+gameBoard.fire("12"); 
+gameBoard.fire("11"); 
+gameBoard.fire("10");
 
-
-
-
-function Ship(id, shipName, shipSize, shipDirection) {
-    this.id = id;
-    this.shipName = shipName;
-    this.shipSize = shipSize;
-    this.shipDirection = shipDirection;
-}
-
-// var fleet = [
-//     {id: 1, shipName: "Aircraft Carrier", shipSize: 5}, 
-//     {id: 2, shipName: "Battleship", shipSize: 4}, 
-//     {id: 3, shipName: "Submarine", shipSize: 3}, 
-//     {id: 4, shipName: "Cruiser", shipSize: 3},   
-//     {id: 5, shipName: "Destroyer", shipSize: 2}
-// ];
+export {Board}

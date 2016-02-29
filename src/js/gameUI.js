@@ -12,9 +12,9 @@ class GameUI {
                 var cell = document.createElement("td");
                 cell.appendChild(document.createTextNode(cellData.name));
                 cell.setAttribute("id", cellData.name);
-                cell.addEventListener("click", function(event) {
-                    event.target.style.backgroundColor = "#00cccc"
-                })
+                // cell.addEventListener("click", function(event) {
+                    // console.log(event.target.id);
+                // })   
                 row.appendChild(cell);
             });
             board.appendChild(row);
@@ -26,11 +26,20 @@ class GameUI {
     }
     displayHit(location) {
         var cell = document.getElementById(location);
+        cell.addEventListener("click", function(event) {
+            var cell = event.target.id
+            console.log(cell);
+        })
         cell.setAttribute("class", "hit");
     }
     displayMiss(location) {
         var cell = document.getElementById(location);
+        cell.addEventListener("click", function(event) {
+            console.log(event.target.id);
+        })
         cell.setAttribute("class", "miss");
     }
 }
-export {GameUI as default}
+export {
+    GameUI
+}
