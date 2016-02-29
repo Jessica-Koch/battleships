@@ -30,14 +30,15 @@ class Board {
         }
         console.dir(this.grid);
     }
-    fire(guess) {
+    fire(evt) {
+        console.log(evt);
         for(var i = 0; i < this.numShips; i++) {
             var ship = this.ships[i];
-            var index = ship.locations.indexOf(guess);
+            var index = ship.locations.indexOf(evt);
             if (index >= 0) {
                 // We have a hit!
                 ship.hits[index] = "hit";
-                gameUI.displayHit(guess);
+                gameUI.displayHit(evt);
                 gameUI.displayMessage("HIT!")
                 if (this.isSunk(ship)) {
                     gameUI.displayMessage("You sank my battleship");
@@ -46,7 +47,7 @@ class Board {
                 return true;
             }
         }
-        gameUI.displayMiss(guess);
+        gameUI.displayMiss(evt);
         gameUI.displayMessage("You missed.");
         return false;
     }    

@@ -12,9 +12,8 @@ class GameUI {
                 var cell = document.createElement("td");
                 cell.appendChild(document.createTextNode(cellData.name));
                 cell.setAttribute("id", cellData.name);
-                // cell.addEventListener("click", function(event) {
-                    // console.log(event.target.id);
-                // })   
+                cell.addEventListener("click", function (event) {
+                    console.log(event.target.id)}, false);   
                 row.appendChild(cell);
             });
             board.appendChild(row);
