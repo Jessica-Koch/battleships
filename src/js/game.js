@@ -1,5 +1,5 @@
-import {Board} from "./board.js";
-import {GameUI} from "./gameUI.js";
+import Board from "./board.js";
+import GameUI from "./gameUI.js";
 
 function init() {
     let cells, cell, c; 
@@ -36,7 +36,7 @@ function handleFiringClick(e){
     game.processGuess(guess);
 }
 
-let gameBoard = new Board(10, 10);
+var gameBoard = new Board(10, 10);
 var gameUI = new GameUI(gameBoard);
 gameUI.drawBoard(); 
 let game = new Game(gameBoard);

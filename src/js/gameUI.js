@@ -21,20 +21,17 @@ class GameUI {
         let messageArea = document.getElementById("messageArea");
         messageArea.innerHTML = msg;
     }
-    displayHit(location) {
-        console.log(location);
+    displayHit(guess) {
         let cell = document.getElementById(location);
         cell.addEventListener("click", function(event) {
             console.log(event.target.id);
         })
         hit.setAttribute("class", "hit");
     }
-    displayMiss(location) {
+    displayMiss(guess) {
         let cell = document.getElementById(location);
         cell.addEventListener("click", function(event) {
             console.log(event);
-            let evt = event.target.id;
-            return evt;
         })
         cell.setAttribute("class", "miss");
     }

@@ -1,8 +1,9 @@
-import GameUI from "./gameUI.js";
+import GameUI  from "./gameUI.js";
 
 // class expression defining board
 class Board {
     constructor(width, height) {
+        let x, y;
         // height and width can be changed to make a custom game, but must maintain state throughout game 
         this._width = width;
         this._height = height;
@@ -20,9 +21,9 @@ class Board {
             locations: ["10", "11", "12"],
             hits: ["", "", ""]
         }];
-        for (let x = 0; x < this._width; x++) {
+        for (x = 0; x < this._width; x++) {
             this.grid[x] = new Array(height);
-            for (let y = 0; y < this._height; y++) {
+            for (y = 0; y < this._height; y++) {
                 this.grid[x][y] = {
                     name: x + "" + y
                 };
@@ -38,10 +39,10 @@ class Board {
             if (index >= 0) {
                 // We have a hit!
                 ship.hits[index] = "hit";
-                gameUI.displayHit(guess);
-                gameUI.displayMessage("HIT!")
+                GameUI.displayHit(guess);
+                GameUI.displayMessage("HIT!")
                 if (this.isSunk(ship)) {
-                    gameUI.displayMessage("You sank my battleship");
+                    GameUI.displayMessage("You sank my battleship");
                     this.shipsSunk++;
                 }
                 return true;
@@ -65,5 +66,4 @@ class Board {
     }
 }
 
-
-export {Board}
+export default Board
