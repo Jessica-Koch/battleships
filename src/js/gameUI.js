@@ -22,14 +22,14 @@ class GameUI {
         messageArea.innerHTML = msg;
     }
     displayHit(guess) {
-        let cell = document.getElementById(location);
+        let cell = document.getElementById(guess);
         cell.addEventListener("click", function(event) {
             console.log(event.target.id);
         })
-        hit.setAttribute("class", "hit");
+        cell.setAttribute("class", "hit");
     }
     displayMiss(guess) {
-        let cell = document.getElementById(location);
+        let cell = document.getElementById(guess);
         cell.addEventListener("click", function(event) {
             console.log(event);
         })
@@ -37,4 +37,4 @@ class GameUI {
     }
 }
 
-export default GameUI;
+export default GameUI
