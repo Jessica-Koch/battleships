@@ -19,14 +19,14 @@ class GameUI {
         });
     }
     displayMessage(msg) {
-        let messageArea = document.getElementById("messageArea");
+        let messageArea;
+        messageArea = document.getElementById("messageArea");
         messageArea.innerHTML = msg;
     }
     displayHit(guess) {
         let cell;
         cell = document.getElementById(guess);
         cell.addEventListener("click", function(event) {
-            // console.log(event.target.id);
         })
         cell.setAttribute("class", "hit");
     }

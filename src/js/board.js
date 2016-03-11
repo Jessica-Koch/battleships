@@ -12,6 +12,35 @@ class Board {
         // this.numShips = 3;
         this._gameUI = new GameUI(this);
         this.shipsSunk = [];
+        this.fleet = [{
+            generateShipLocations: function() {
+                let locations, i;
+                for(i = 0; i < this.ships.length; i++) {
+                    do {
+                        locations = this.generateShip();
+                    } while (this.collision(locations));
+                    this.ships[i].locations = locations;
+                }
+            },
+            generateShip: function(){
+                let direction, row, col, newShipLocations, i;
+                direction = Math.floor(Math.random() * 2);
+                if (direction === 1) {
+                    // horizontal ship
+                } else {
+                    // vertical ship
+                }
+                newShipLocations = [];
+                for(i = 0; i < this.shipLength; i++) {
+                    if (direction === 1) {
+
+                    }else {
+                        
+                    }
+                }
+                return newShipLocations;
+            }
+        }]
         this.ships = [{
             name: "destroyer",
             locations: ["06", "16", "26"],
@@ -33,23 +62,15 @@ class Board {
                 };
             }
         }
-        // consoledir(this.grid);
     }
-    generateShipLocations() {
-        let locations, i;
-        for(i = 0; i < this.ships.length; i++) {
-            do {
-                locations = this.generateShip();
-            } while (this.collision(locations));
-            this.ships[i].locations = locations;
-        }
-    }
+
     fire(guess) {
-        // debugger
         let i, ship, index;
         for(i = 0; i < this.ships.length; i++) {
+            console.log()
             ship = this.ships[i];
             index = ship.locations.indexOf(guess);
+            console.log(index);
             if (index > -1) {
                 // We have a hit!
                 ship.hits[index] = "hit";

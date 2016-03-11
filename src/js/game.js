@@ -13,7 +13,6 @@ class Game {
             hit = this._board.fire(guess);
             if (hit && this._board.ships.length === 0) {
                 this._gameUI.displayMessage("You sank all my battleships, in " + this.guesses + " guesses");
-                console.log(this);
             }
         }
     }
