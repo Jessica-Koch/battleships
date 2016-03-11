@@ -38,7 +38,7 @@ class Board {
     }
     fire(guess) {
         // debugger
-        let i, ship, index;
+        let i, ship, index, sunkenShip;
         for(i = 0; i < this.ships.length; i++) {
             ship = this.ships[i];
             index = ship.locations.indexOf(guess);
@@ -48,12 +48,8 @@ class Board {
                 this._gameUI.displayHit(guess);
                 this._gameUI.displayMessage(ship.name + " HIT!")
                 if (this.isSunk(ship)) {
-                    this.ships.pop(ship);
-                    debugger
-                    console.log(this.ships);
-                    // this.shipsSunk.push(sunkenShip);
-                    // this.shipsSunk.push(ship);
-                    // this.shipsSunk++;
+                    sunkenShip = this.ships.pop(ship);
+                    this.shipsSunk.push(sunkenShip);
                 }
                 return true;
             }
@@ -63,7 +59,7 @@ class Board {
         return false;
     }    
     isSunk(ship){
-        let i, sunkenShip;
+        let i;
         // takes a ship and looks at it's locations for a hit
         for (i = 0; i < ship.hits.length; i++) {
             if(ship.hits.includes("")) {
@@ -72,7 +68,6 @@ class Board {
             }
             
             this._gameUI.displayMessage("You sank " + ship.name);
-            // console.log(ship.hits);
             // otherwise the ship is sunk
             return true;
         }
