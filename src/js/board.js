@@ -27,20 +27,24 @@ class Board {
                 direction = Math.floor(Math.random() * 2);
                 if (direction === 1) {
                     // horizontal ship
+                    row = Math.floor(Math.random() * this._width);
+                    col = Math.floor(Math.Math.random() * (this._height - this.shipLength));
                 } else {
                     // vertical ship
+                    row = Math.floor(Math.random() * (this._width - this.shipLength));
+                    col = Math.floor(Math.random() * this._width);
                 }
                 newShipLocations = [];
                 for(i = 0; i < this.shipLength; i++) {
                     if (direction === 1) {
-
-                    }else {
-                        
+                        newShipLocations.push(row + "" + (col + i));
+                    } else {
+                        newShipLocations.push((row + i) + "" + col);
                     }
                 }
                 return newShipLocations;
             }
-        }]
+        }];
         this.ships = [{
             name: "destroyer",
             locations: ["06", "16", "26"],
