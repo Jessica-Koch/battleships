@@ -43,6 +43,18 @@ class Board {
                     }
                 }
                 return newShipLocations;
+            },
+            collision: function (locations) {
+                let ship, i, j;
+                for (i = 0; i < this.fleet.length; i++) {
+                    ship = this.ships[i];
+                    for( j = 0; j < locations.length; j++) {
+                        if(ship.locations.indexOf(locations[j]) >= 0) {
+                            return true
+                        }
+                    }
+                }
+                return false;
             }
         }];
         this.ships = [{
