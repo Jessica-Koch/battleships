@@ -26,4 +26,4 @@ function handleFiringClick(e) {
 }
 
 gameUI.drawBoard();
-let game = new Game(gameBoard);
+let game = new Game(gameBoard, gameUI);

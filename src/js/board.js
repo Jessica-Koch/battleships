@@ -9,17 +9,20 @@ class Board {
         this._width = width;
         this._height = height;
         this.grid = new Array(this._width);
-        this.numShips = 3;
-        this.shipsSunk = 0;
+        // this.numShips = 3;
+        this.shipsSunk = [];
         this.shipLength = 3;
         this._gameUI = new GameUI(this);
         this.ships = [{
+            name: "destroyer",
             locations: ["06", "16", "26"],
             hits: ["", "", ""]
         }, {
+            name: "battleship",
             locations: ["24", "34", "44"],
             hits: ["", "", ""]
         }, {
+            name: "submarine",
             locations: ["10", "11", "12"],
             hits: ["", "", ""]
         }];
@@ -31,21 +34,26 @@ class Board {
                 };
             }
         }
-        // console.dir(this.grid);
+        // consoledir(this.grid);
     }
     fire(guess) {
+        // debugger
         let i, ship, index;
-        for(i = 0; i < this.numShips; i++) {
+        for(i = 0; i < this.ships.length; i++) {
             ship = this.ships[i];
             index = ship.locations.indexOf(guess);
-            if (index >= 0) {
+            if (index > -1) {
                 // We have a hit!
                 ship.hits[index] = "hit";
                 this._gameUI.displayHit(guess);
-                this._gameUI.displayMessage("HIT!")
+                this._gameUI.displayMessage(ship.name + " HIT!")
                 if (this.isSunk(ship)) {
-                    this._gameUI.displayMessage("You sank my battleship");
-                    this.shipsSunk++;
+                    this.ships.pop(ship);
+                    debugger
+                    console.log(this.ships);
+                    // this.shipsSunk.push(sunkenShip);
+                    // this.shipsSunk.push(ship);
+                    // this.shipsSunk++;
                 }
                 return true;
             }
@@ -55,13 +63,16 @@ class Board {
         return false;
     }    
     isSunk(ship){
-        let i;
+        let i, sunkenShip;
         // takes a ship and looks at it's locations for a hit
-        for (i = 0; i < this.shipLength; i++) {
-            if(ship.hits[i] !== "hit") {
+        for (i = 0; i < ship.hits.length; i++) {
+            if(ship.hits.includes("")) {
                 // if there's a location without a hit, the ship is afloat
                 return false;
             }
+            
+            this._gameUI.displayMessage("You sank " + ship.name);
+            // console.log(ship.hits);
             // otherwise the ship is sunk
             return true;
         }

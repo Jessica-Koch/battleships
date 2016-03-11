@@ -24,14 +24,14 @@ class GameUI {
     displayHit(guess) {
         let cell = document.getElementById(guess);
         cell.addEventListener("click", function(event) {
-            console.log(event.target.id);
+            // console.log(event.target.id);
         })
         cell.setAttribute("class", "hit");
     }
     displayMiss(guess) {
         let cell = document.getElementById(guess);
         cell.addEventListener("click", function(event) {
-            console.log(event);
+            // console.log(event);
         })
         cell.setAttribute("class", "miss");
     }
