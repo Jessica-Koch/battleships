@@ -67,7 +67,7 @@ class Board {
                 return false;
             }
             
-            this._gameUI.displayMessage("You sank " + ship.name);
+            this._gameUI.displayMessage("You sank my " + ship.name);
             // otherwise the ship is sunk
             return true;
         }
