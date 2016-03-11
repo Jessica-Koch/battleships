@@ -17,8 +17,6 @@ function init() {
 
 window.onload = init;
 
-
-
 function handleFiringClick(e) {
     let guess;
     guess = e.target.id;

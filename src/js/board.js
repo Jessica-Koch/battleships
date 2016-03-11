@@ -10,9 +10,8 @@ class Board {
         this._height = height;
         this.grid = new Array(this._width);
         // this.numShips = 3;
-        this.shipsSunk = [];
-        this.shipLength = 3;
         this._gameUI = new GameUI(this);
+        this.shipsSunk = [];
         this.ships = [{
             name: "destroyer",
             locations: ["06", "16", "26"],
@@ -36,9 +35,18 @@ class Board {
         }
         // consoledir(this.grid);
     }
+    generateShipLocations() {
+        let locations, i;
+        for(i = 0; i < this.ships.length; i++) {
+            do {
+                locations = this.generateShip();
+            } while (this.collision(locations));
+            this.ships[i].locations = locations;
+        }
+    }
     fire(guess) {
         // debugger
-        let i, ship, index, sunkenShip;
+        let i, ship, index;
         for(i = 0; i < this.ships.length; i++) {
             ship = this.ships[i];
             index = ship.locations.indexOf(guess);
@@ -48,8 +56,7 @@ class Board {
                 this._gameUI.displayHit(guess);
                 this._gameUI.displayMessage(ship.name + " HIT!")
                 if (this.isSunk(ship)) {
-                    sunkenShip = this.ships.pop(ship);
-                    this.shipsSunk.push(sunkenShip);
+                    this.ships.pop(ship);
                 }
                 return true;
             }
@@ -59,15 +66,15 @@ class Board {
         return false;
     }    
     isSunk(ship){
-        let i;
+        let i, sunkenShip;
         // takes a ship and looks at it's locations for a hit
         for (i = 0; i < ship.hits.length; i++) {
             if(ship.hits.includes("")) {
                 // if there's a location without a hit, the ship is afloat
                 return false;
             }
-            
             this._gameUI.displayMessage("You sank my " + ship.name);
+            this.shipsSunk.push(ship);
             // otherwise the ship is sunk
             return true;
         }

@@ -4,12 +4,13 @@ class GameUI {
         this._board = board;
     }
     drawBoard() {
-        let board = document.getElementById("p1-board");
+        let board, row, cell;
+        board = document.getElementById("p1-board");
         // create board
         this._board.grid.forEach(function(rowData) {
-            let row = document.createElement("tr");
+            row = document.createElement("tr");
             rowData.forEach(function(cellData) {
-                let cell = document.createElement("td");
+                cell = document.createElement("td");
                 cell.appendChild(document.createTextNode(cellData.name));
                 cell.setAttribute("id", cellData.name);
                 row.appendChild(cell);
@@ -22,14 +23,16 @@ class GameUI {
         messageArea.innerHTML = msg;
     }
     displayHit(guess) {
-        let cell = document.getElementById(guess);
+        let cell;
+        cell = document.getElementById(guess);
         cell.addEventListener("click", function(event) {
             // console.log(event.target.id);
         })
         cell.setAttribute("class", "hit");
     }
     displayMiss(guess) {
-        let cell = document.getElementById(guess);
+        let cell;
+        cell = document.getElementById(guess);
         cell.addEventListener("click", function(event) {
             // console.log(event);
         })
