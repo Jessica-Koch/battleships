@@ -82,12 +82,11 @@ class Board {
 
     fire(guess) {
         let i, ship, index;
+        console.log(guess);
         for(i = 0; i < this.ships.length; i++) {
-            console.log()
             ship = this.ships[i];
-            index = ship.locations.indexOf(guess);
-            console.log(index);
-            if (index > -1) {
+            index = ship.locations.includes(guess);
+            if (index === true) {
                 // We have a hit!
                 ship.hits[index] = "hit";
                 this._gameUI.displayHit(guess);
