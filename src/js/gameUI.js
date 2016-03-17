@@ -34,7 +34,7 @@ class GameUI {
         let cell;
         cell = document.getElementById(guess);
         cell.addEventListener("click", function(event) {
-            // console.log(event);
+            // console.log(event.target);
         })
         cell.setAttribute("class", "miss");
     }

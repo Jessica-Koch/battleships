@@ -81,18 +81,23 @@ class Board {
     }
 
     fire(guess) {
-        let i, ship, index;
-        console.log(guess);
+        let i, ship, index, wasHit;
+
         for(i = 0; i < this.ships.length; i++) {
             ship = this.ships[i];
-            index = ship.locations.includes(guess);
-            if (index === true) {
+            console.log(this.ships.length);
+            wasHit = ship.locations.includes(guess);
+            index = ship.locations.indexOf(guess);
+            if (wasHit === true) {
                 // We have a hit!
                 ship.hits[index] = "hit";
+                // console.log(ship.hits[index]);
                 this._gameUI.displayHit(guess);
                 this._gameUI.displayMessage(ship.name + " HIT!")
                 if (this.isSunk(ship)) {
-                    this.ships.pop(ship);
+                    this.ships.splice(this.ships.indexOf(ship), 1);
+                    console.log(ship.name);
+                    // this.ships.pop(ship);
                 }
                 return true;
             }
