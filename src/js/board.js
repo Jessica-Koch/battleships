@@ -85,7 +85,6 @@ class Board {
 
         for(i = 0; i < this.ships.length; i++) {
             ship = this.ships[i];
-            console.log(this.ships.length);
             wasHit = ship.locations.includes(guess);
             index = ship.locations.indexOf(guess);
             if (wasHit === true) {
@@ -96,8 +95,6 @@ class Board {
                 this._gameUI.displayMessage(ship.name + " HIT!")
                 if (this.isSunk(ship)) {
                     this.ships.splice(this.ships.indexOf(ship), 1);
-                    console.log(ship.name);
-                    // this.ships.pop(ship);
                 }
                 return true;
             }
@@ -116,6 +113,7 @@ class Board {
             }
             this._gameUI.displayMessage("You sank my " + ship.name);
             this.shipsSunk.push(ship);
+            this._gameUI.displaySunk(ship)
             // otherwise the ship is sunk
             return true;
         }

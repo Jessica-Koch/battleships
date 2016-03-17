@@ -26,17 +26,27 @@ class GameUI {
     displayHit(guess) {
         let cell;
         cell = document.getElementById(guess);
-        cell.addEventListener("click", function(event) {
-        })
+        // cell.addEventListener("click", function(event) {
+        // })
         cell.setAttribute("class", "hit");
     }
     displayMiss(guess) {
         let cell;
         cell = document.getElementById(guess);
-        cell.addEventListener("click", function(event) {
-            // console.log(event.target);
-        })
+        // cell.addEventListener("click", function(event) {
+        //     // console.log(event.target);
+        // })
         cell.setAttribute("class", "miss");
+    }
+    displaySunk(ship, guess){
+        let cell;
+        // cells = document.getElementById(ship.locations);
+        ship.locations.forEach( function(loc) {
+            cell = document.getElementById(loc);    
+            cell.setAttribute('class', 'sunk');
+            cell.setAttribute('disabled', true);    
+            cell.appendChild(document.createTextNode(ship.name + ' SUNK'));
+        });
     }
 }
 
