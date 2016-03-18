@@ -7,13 +7,14 @@ class Game {
         this.guesses = 0;
     }    
     processGuess(guess) {
-        let hit;
+        let hit, ship, s, sunk, sunkenShips;
         if (guess) {
             this.guesses++;
             hit = this._board.fire(guess);
             if (hit && this._board.ships.length === 0) {
                 this._gameUI.displayMessage("You sank all my battleships, in " + this.guesses + " guesses");
             }
+
         }
     }
 }

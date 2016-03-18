@@ -4,7 +4,7 @@ import Game  from "./game.js";
 // class expression defining board
 class Board {
     constructor(width, height, gameUI) {
-        let x, y;
+        let x, y, cells, cell;
         // height and width can be changed to make a custom game, but must maintain state throughout game 
         this._width = width;
         this._height = height;
@@ -26,7 +26,7 @@ class Board {
                 let direction, row, col, newShipLocations, i;
                 direction = Math.floor(Math.random() * 2);
                 if (direction === 1) {
-                    // horizontal ship
+                   // horizontal ship
                     row = Math.floor(Math.random() * this._width);
                     col = Math.floor(Math.Math.random() * (this._height - this.shipLength));
                 } else {
@@ -70,6 +70,7 @@ class Board {
             locations: ["10", "11", "12"],
             hits: ["", "", ""]
         }];
+        cells = document.getElementById('td');
         for (x = 0; x < this._width; x++) {
             this.grid[x] = new Array(height);
             for (y = 0; y < this._height; y++) {
@@ -97,7 +98,7 @@ class Board {
                     this.ships.splice(this.ships.indexOf(ship), 1);
                 }
                 return true;
-            }
+            }   
         }
         this._gameUI.displayMiss(guess);
         this._gameUI.displayMessage("You missed.");

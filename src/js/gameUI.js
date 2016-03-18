@@ -4,7 +4,7 @@ class GameUI {
         this._board = board;
     }
     drawBoard() {
-        let board, row, cell;
+        let board, row, cells, cell;
         board = document.getElementById("p1-board");
         // create board
         this._board.grid.forEach(function(rowData) {
@@ -13,6 +13,7 @@ class GameUI {
                 cell = document.createElement("td");
                 cell.appendChild(document.createTextNode(cellData.name));
                 cell.setAttribute("id", cellData.name);
+                // cell.addEventListener('click', board.handleFiringEvent);
                 row.appendChild(cell);
             });
             board.appendChild(row);
@@ -26,16 +27,11 @@ class GameUI {
     displayHit(guess) {
         let cell;
         cell = document.getElementById(guess);
-        // cell.addEventListener("click", function(event) {
-        // })
         cell.setAttribute("class", "hit");
     }
     displayMiss(guess) {
         let cell;
         cell = document.getElementById(guess);
-        // cell.addEventListener("click", function(event) {
-        //     // console.log(event.target);
-        // })
         cell.setAttribute("class", "miss");
     }
     displaySunk(ship, guess){
