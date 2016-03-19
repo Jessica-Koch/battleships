@@ -60,7 +60,31 @@ class Board {
             this.ships[i].locations = locations;
         }
     }
-    generateShip(){}
+    generateShip(){
+        let direction, row, col, newShipLocations, i;
+        direction = Math.floor(Math.random() * 2);
+        if (direction === 1) {
+            // Generate horizontal ship location
+            row = Math.floor(Math.random() * this.width);
+            col = Math.floor(Math.random() * (this.width - this.ShipLength));
+        } else {
+            // Generate vertical ship direction 
+            row = Math.floor(Math.random() * (this.height - this.shipLength));
+            col = Math.floor(Math.random() * this.height);
+        }
+        newShipLocations = [];
+        for(i = 0; i < this.shipLength; i++){
+            if (direction === 1) {
+                // add location for horizontal ship
+                newShipLocations.push(row + '' + (col + i));
+            }
+            else {
+                // add location for vertical ship
+                newShipLocations.push((row + i) + '' + col);
+            }
+        }
+        return newShipLocations;
+    }
     collision(){}
     fire(guess) {
         let i, ship, index, wasHit;
