@@ -13,34 +13,33 @@ class Board {
         this.numShips = 5;
         this._gameUI = new GameUI(this);
         this.shipsSunk = [];
-        this.ships = [];
-        // this.fleet = [{
-        //     name: "Aircraft Carrier",
-        //     size: 5
-        //         // locations: ["06", "16", "26", "36", "46"],
-        //         // hits: ["", "", "", "", ""]
-        // }, {
-        //     name: "Battleship",
-        //     size: 4
-        //         // locations: ["06", "16", "26", "36"],
-        //         // hits: ["", "", "", ""]
-        // }, {
-        //     name: "Submarine",
-        //     size: 3,
-        //     // locations: ["06", "16", "26"],
-        //     // hits: ["", "", ""]
-        // }, {
-        //     name: "Destroyer",
-        //     size: 3
-        //         // locations: ["06", "16", "26"],
-        //         // hits: ["", "", ""]
-        // }, {
-        //     name: "Patrol Boat",
-        //     size: 2
-        //         // locations: ["06", "16"],
-        //         // hits: ["", ""]
+        this.ships = [{
+            name: "Aircraft Carrier",
+            size: 5,
+                locations: ["0", "0", "0", "0", "0"],
+                hits: ["", "", "", "", ""]
+        }, {
+            name: "Battleship",
+            size: 4,
+                locations: ["0", "0", "0", "0"],
+                hits: ["", "", "", ""]
+        }, {
+            name: "Submarine",
+            size: 3,
+            locations: ["0", "0", "0"],
+            hits: ["", "", ""]
+        }, {
+            name: "Destroyer",
+            size: 3,
+            locations: ["0", "0", "0"],
+            hits: ["", "", ""]
+        }, {
+            name: "Patrol Boat",
+            size: 2,
+            locations: ["0", "0"],
+            hits: ["", ""]
 
-        // }];
+        }];
         cells = document.getElementById('td');
         for (x = 0; x < this._width; x++) {
             this.grid[x] = new Array(height);
@@ -85,7 +84,19 @@ class Board {
         }
         return newShipLocations;
     }
-    collision(){}
+    collision(locations){
+        let i, ship, j;
+        for (i = 0; i < this.numShips; i++) {
+            ship = this.ships[i]; // for each ship already on teh board
+            // check to see if any of the locations in teh new ship location are taken
+            for (var j = 0; j < locations.length; j++) {
+                if (ship.locations.indexOf(locations[j]) >= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     fire(guess) {
         let i, ship, index, wasHit;
 
