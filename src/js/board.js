@@ -16,27 +16,27 @@ class Board {
         this.ships = [{
             name: "Aircraft Carrier",
             size: 5,
-                locations: ["0", "0", "0", "0", "0"],
+                locations: [0, 0, 0, 0, 0],
                 hits: ["", "", "", "", ""]
         }, {
             name: "Battleship",
             size: 4,
-                locations: ["0", "0", "0", "0"],
+                locations: [0, 0, 0, 0],
                 hits: ["", "", "", ""]
         }, {
             name: "Submarine",
             size: 3,
-            locations: ["0", "0", "0"],
+            locations: [0, 0, 0],
             hits: ["", "", ""]
         }, {
             name: "Destroyer",
             size: 3,
-            locations: ["0", "0", "0"],
+            locations: [0, 0, 0],
             hits: ["", "", ""]
         }, {
             name: "Patrol Boat",
             size: 2,
-            locations: ["0", "0"],
+            locations: [0, 0],
             hits: ["", ""]
 
         }];
@@ -89,7 +89,7 @@ class Board {
         for (i = 0; i < this.numShips; i++) {
             ship = this.ships[i]; // for each ship already on teh board
             // check to see if any of the locations in teh new ship location are taken
-            for (var j = 0; j < locations.length; j++) {
+            for (j = 0; j < locations.length; j++) {
                 if (ship.locations.indexOf(locations[j]) >= 0) {
                     return true;
                 }
