@@ -16,27 +16,27 @@ class Board {
         this.ships = [{
             name: "Aircraft Carrier",
             size: 5,
-                locations: [0, 0, 0, 0, 0],
+                locations: [],
                 hits: ["", "", "", "", ""]
         }, {
             name: "Battleship",
             size: 4,
-                locations: [0, 0, 0, 0],
+                locations: [],
                 hits: ["", "", "", ""]
         }, {
             name: "Submarine",
             size: 3,
-            locations: [0, 0, 0],
+            locations: [],
             hits: ["", "", ""]
         }, {
             name: "Destroyer",
             size: 3,
-            locations: [0, 0, 0],
+            locations: [],
             hits: ["", "", ""]
         }, {
             name: "Patrol Boat",
             size: 2,
-            locations: [0, 0],
+            locations: [],
             hits: ["", ""]
 
         }];
@@ -64,15 +64,15 @@ class Board {
         direction = Math.floor(Math.random() * 2);
         if (direction === 1) {
             // Generate horizontal ship location
-            row = Math.floor(Math.random() * this.width);
-            col = Math.floor(Math.random() * (this.width - this.ShipLength));
+            row = Math.floor(Math.random() * this._width);
+            col = Math.floor(Math.random() * (this._width - this.numShips));
         } else {
             // Generate vertical ship direction 
-            row = Math.floor(Math.random() * (this.height - this.shipLength));
-            col = Math.floor(Math.random() * this.height);
+            row = Math.floor(Math.random() * (this._height - this.numShips));
+            col = Math.floor(Math.random() * this._height);
         }
         newShipLocations = [];
-        for(i = 0; i < this.shipLength; i++){
+        for(i = 0; i < this.numShips; i++){
             if (direction === 1) {
                 // add location for horizontal ship
                 newShipLocations.push(row + '' + (col + i));

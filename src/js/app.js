@@ -24,4 +24,5 @@ function handleFiringClick(e) {
 }
 
 gameUI.drawBoard();
+gameBoard.generateShipLocations();
 let game = new Game(gameBoard, gameUI);
