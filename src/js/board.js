@@ -16,27 +16,27 @@ class Board {
         this.ships = [{
             name: "Aircraft Carrier",
             size: 5,
-                locations: [],
-                hits: ["", "", "", "", ""]
+            locations: [0, 0, 0, 0, 0],
+            hits: ["", "", "", "", ""]
         }, {
             name: "Battleship",
             size: 4,
-                locations: [],
-                hits: ["", "", "", ""]
+            locations: [0, 0, 0, 0],
+            hits: ["", "", "", ""]
         }, {
             name: "Submarine",
             size: 3,
-            locations: [],
+            locations: [0, 0, 0],
             hits: ["", "", ""]
         }, {
             name: "Destroyer",
             size: 3,
-            locations: [],
+            locations: [0, 0, 0],
             hits: ["", "", ""]
         }, {
             name: "Patrol Boat",
             size: 2,
-            locations: [],
+            locations: [0, 0],
             hits: ["", ""]
 
         }];
@@ -52,7 +52,7 @@ class Board {
     }
     generateShipLocations(){
         let locations, i;
-        for(i = 0; i < this.numShips; i++){
+        for(i = 0; i < this.ships.length; i++){
             do {
                 locations = this.generateShip();
             } while (this.collision(locations));
@@ -60,19 +60,23 @@ class Board {
         }
     }
     generateShip(){
-        let direction, row, col, newShipLocations, i;
+        let direction, row, col, newShipLocations, s, shipSize, i;
+
         direction = Math.floor(Math.random() * 2);
-        if (direction === 1) {
-            // Generate horizontal ship location
-            row = Math.floor(Math.random() * this._width);
-            col = Math.floor(Math.random() * (this._width - this.numShips));
-        } else {
-            // Generate vertical ship direction 
-            row = Math.floor(Math.random() * (this._height - this.numShips));
-            col = Math.floor(Math.random() * this._height);
+        for(s = 0; s < this.numShips; s++){
+        //     shipSize = this.ships[ship].size;
+            if (direction === 1) {
+                // Generate horizontal ship location
+                row = Math.floor(Math.random() * this._width);
+                col = Math.floor(Math.random() * (this._width - 5));
+            } else {
+                // Generate vertical ship direction 
+                row = Math.floor(Math.random() * (this._height - 5));
+                col = Math.floor(Math.random() * this._height);
+            }
         }
         newShipLocations = [];
-        for(i = 0; i < this.numShips; i++){
+        for(i = 0; i < this.ships[i].locations.length; i++){
             if (direction === 1) {
                 // add location for horizontal ship
                 newShipLocations.push(row + '' + (col + i));
@@ -80,17 +84,19 @@ class Board {
             else {
                 // add location for vertical ship
                 newShipLocations.push((row + i) + '' + col);
+                console.log(newShipLocations.push((row + i) + '' + col));
             }
         }
         return newShipLocations;
+        console.log(newShipLocations);
     }
-    collision(locations){
+    collision(loc){
         let i, ship, j;
         for (i = 0; i < this.numShips; i++) {
             ship = this.ships[i]; // for each ship already on teh board
             // check to see if any of the locations in teh new ship location are taken
-            for (j = 0; j < locations.length; j++) {
-                if (ship.locations.indexOf(locations[j]) >= 0) {
+            for (j = 0; j < loc.length; j++) {
+                if (ship.locations.indexOf(loc[j]) >= 0) {
                     return true;
                 }
             }
