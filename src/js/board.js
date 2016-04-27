@@ -53,16 +53,20 @@ class Board {
             }
         }
     }
-    generateShipLocations(){
+    generateShipLocations() {
         let locations, i;
         for(i = 0; i < this.ships.length; i++){
-            do {
+            locations = this.generateShip();
+            if (this.collision(locations)) {
                 locations = this.generateShip();
-            } while (this.collision(locations));
+            }
+
+            
             this.ships[i].locations = locations;
+
         }
     }
-    generateShip(){
+    generateShip() {
         let direction, row, col, newShipLocations, s, i;
         direction = Math.floor(Math.random() * 2);
         for(s = 0; s < this.ships.length; s++){
@@ -77,7 +81,7 @@ class Board {
             }
         }
         newShipLocations = [];
-        for(i = 0; i < this.ships[i].size; i++){
+        for(i = 0; i < this.ships[i].locations.length; i++){
             if (direction === 1) {
                 // add location for horizontal ship
                 newShipLocations.push(row + '' + (col + i));
@@ -89,7 +93,7 @@ class Board {
         }
         return newShipLocations;
     }
-    collision(loc){
+    collision(loc) {
         let i, ship, j;
         for (i = 0; i < this.ships.length; i++) {
             ship = this.ships[i]; // for each ship already on teh board
@@ -98,6 +102,7 @@ class Board {
                 if (ship.locations.indexOf(loc[j]) >= 0) {
                     return true;
                 }
+                console.log('loc: '+ loc);
             }
         }
         return false;
