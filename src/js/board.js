@@ -10,7 +10,6 @@ class Board {
         this._width = width;
         this._height = height;
         this.grid = new Array(this._width);
-        this.numShips = 5;
         this._gameUI = new GameUI(this);
         this.shipsSunk = [];
         this.ships = [{
@@ -18,22 +17,26 @@ class Board {
             size: 5,
             locations: [0, 0, 0, 0, 0],
             hits: ["", "", "", "", ""]
-        }, {
+        }, 
+        {
             name: "Battleship",
             size: 4,
             locations: [0, 0, 0, 0],
             hits: ["", "", "", ""]
-        }, {
+        }, 
+        {
             name: "Submarine",
             size: 3,
             locations: [0, 0, 0],
             hits: ["", "", ""]
-        }, {
+        }, 
+        {
             name: "Destroyer",
             size: 3,
             locations: [0, 0, 0],
             hits: ["", "", ""]
-        }, {
+        }, 
+        {
             name: "Patrol Boat",
             size: 2,
             locations: [0, 0],
@@ -60,11 +63,9 @@ class Board {
         }
     }
     generateShip(){
-        let direction, row, col, newShipLocations, s, shipSize, i;
-
+        let direction, row, col, newShipLocations, s, i;
         direction = Math.floor(Math.random() * 2);
-        for(s = 0; s < this.numShips; s++){
-        //     shipSize = this.ships[ship].size;
+        for(s = 0; s < this.ships.length; s++){
             if (direction === 1) {
                 // Generate horizontal ship location
                 row = Math.floor(Math.random() * this._width);
@@ -76,7 +77,7 @@ class Board {
             }
         }
         newShipLocations = [];
-        for(i = 0; i < this.ships[i].locations.length; i++){
+        for(i = 0; i < this.ships[i].size; i++){
             if (direction === 1) {
                 // add location for horizontal ship
                 newShipLocations.push(row + '' + (col + i));
@@ -84,15 +85,13 @@ class Board {
             else {
                 // add location for vertical ship
                 newShipLocations.push((row + i) + '' + col);
-                console.log(newShipLocations.push((row + i) + '' + col));
             }
         }
         return newShipLocations;
-        console.log(newShipLocations);
     }
     collision(loc){
         let i, ship, j;
-        for (i = 0; i < this.numShips; i++) {
+        for (i = 0; i < this.ships.length; i++) {
             ship = this.ships[i]; // for each ship already on teh board
             // check to see if any of the locations in teh new ship location are taken
             for (j = 0; j < loc.length; j++) {
