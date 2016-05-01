@@ -15,31 +15,31 @@ class Board {
         this.ships = [{
             name: "Aircraft Carrier",
             size: 5,
-            locations: [0, 0, 0, 0, 0],
+            locations: [],
             hits: ["", "", "", "", ""]
         }, 
         {
             name: "Battleship",
             size: 4,
-            locations: [0, 0, 0, 0],
+            locations: [],
             hits: ["", "", "", ""]
         }, 
         {
             name: "Submarine",
             size: 3,
-            locations: [0, 0, 0],
+            locations: [],
             hits: ["", "", ""]
         }, 
         {
             name: "Destroyer",
             size: 3,
-            locations: [0, 0, 0],
+            locations: [],
             hits: ["", "", ""]
         }, 
         {
             name: "Patrol Boat",
             size: 2,
-            locations: [0, 0],
+            locations: [],
             hits: ["", ""]
 
         }];
@@ -54,55 +54,51 @@ class Board {
         }
     }
     generateShipLocations() {
-        let locations, i;
-        for(i = 0; i < this.ships.length; i++){
-            locations = this.generateShip();
-            if (this.collision(locations)) {
-                locations = this.generateShip();
+        let ship, locations;
+        for (var i = 0; i < this.ships.length; i++) {
+            ship = this.ships[i];
+            locations = this.generateShip(ship);
+            if (this.collision(locations)){
+                locations = this.generateShip(ship);
             }
-
-            
-            this.ships[i].locations = locations;
-
+            ship.locations = locations;
         }
     }
-    generateShip() {
-        let direction, row, col, newShipLocations, s, i;
+    generateShip(ship) {
+        let direction, row, col, newShipLocations, s;
         direction = Math.floor(Math.random() * 2);
-        for(s = 0; s < this.ships.length; s++){
-            if (direction === 1) {
-                // Generate horizontal ship location
-                row = Math.floor(Math.random() * this._width);
-                col = Math.floor(Math.random() * (this._width - 5));
-            } else {
-                // Generate vertical ship direction 
-                row = Math.floor(Math.random() * (this._height - 5));
-                col = Math.floor(Math.random() * this._height);
-            }
+
+        if (direction === 1) {
+            // horizontal ship
+            row = Math.floor(Math.random() * this._width);
+            col = Math.floor(Math.random() * (this._width - 5));
+        } else {
+            // vertical ship
+            row = Math.floor(Math.random() * (this._height - 5));
+            col = Math.floor(Math.random() * this._height);
         }
+
         newShipLocations = [];
-        for(i = 0; i < this.ships[i].locations.length; i++){
+
+        // loop through ship's size to add locations
+        for(s = 0; s < ship.size; s++){
             if (direction === 1) {
-                // add location for horizontal ship
-                newShipLocations.push(row + '' + (col + i));
-            }
-            else {
-                // add location for vertical ship
-                newShipLocations.push((row + i) + '' + col);
+                newShipLocations.push(row + '' + (col + s));
+            } else {
+                newShipLocations.push((row + s) + '' + col);
             }
         }
         return newShipLocations;
     }
-    collision(loc) {
+    collision(shipLocations) {
         let i, ship, j;
         for (i = 0; i < this.ships.length; i++) {
             ship = this.ships[i]; // for each ship already on teh board
             // check to see if any of the locations in teh new ship location are taken
-            for (j = 0; j < loc.length; j++) {
-                if (ship.locations.indexOf(loc[j]) >= 0) {
+            for (j = 0; j < shipLocations.length; j++) {
+                if (ship.locations.indexOf(shipLocations[j]) >= 0) {
                     return true;
                 }
-                console.log('loc: '+ loc);
             }
         }
         return false;
@@ -117,7 +113,6 @@ class Board {
             if (wasHit === true) {
                 // We have a hit!
                 ship.hits[index] = "hit";
-                // console.log(ship.hits[index]);
                 this._gameUI.displayHit(guess);
                 this._gameUI.displayMessage(ship.name + " HIT!")
                 if (this.isSunk(ship)) {
