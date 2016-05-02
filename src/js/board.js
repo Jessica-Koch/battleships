@@ -62,6 +62,7 @@ class Board {
                 locations = this.generateShip(ship);
             }
             ship.locations = locations;
+            console.log(ship.locations);
         }
     }
     generateShip(ship) {
@@ -89,14 +90,17 @@ class Board {
             }
         }
         return newShipLocations;
+
     }
-    collision(shipLocations) {
+    collision(newShipLocations) {
         let i, ship, j;
-        for (i = 0; i < this.ships.length; i++) {
-            ship = this.ships[i]; // for each ship already on teh board
-            // check to see if any of the locations in teh new ship location are taken
-            for (j = 0; j < shipLocations.length; j++) {
-                if (ship.locations.indexOf(shipLocations[j]) >= 0) {
+        // loop through placed ships on board
+        for(i = 0; i < this.ships.length; i++) {
+            ship = this.ships[i];
+
+            // loop through each ship's location array 
+            for(j = 0; j < newShipLocations.length; j++) {
+                if (ship.locations.indexOf(newShipLocations[j]) >= 0) {
                     return true;
                 }
             }
