@@ -21,8 +21,13 @@ function handleFiringClick(e) {
     let guess;
     guess = e.target.id;
     game.processGuess(guess);
+
+    if (gameUI.displayHit) {
+        this.removeEventListener('click', handleFiringClick);
+    }
 }
 
 gameUI.drawBoard();
+gameUI.drawScoreBoard();
 gameBoard.generateShipLocations();
 let game = new Game(gameBoard, gameUI);

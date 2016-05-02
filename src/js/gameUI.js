@@ -19,6 +19,33 @@ class GameUI {
             board.appendChild(row);
         });
     }
+    drawScoreBoard(){
+        let scoreBoard, tbl, tblBody, t, row, r, cell, cellText, th, hText;
+        scoreBoard = document.getElementById('score');
+        tbl = document.createElement('table');
+        tblBody = document.createElement('tbody');
+        let header = document.createElement('thead');
+        header.appendChild(document.createTextNode('Fleet Status'));
+        scoreBoard.appendChild(header);
+        for(t = 0; t < this._board.ships.length; t++){
+            row = document.createElement('tr');    
+            th = document.createElement('th');
+            hText = document.createTextNode(this._board.ships[t].name);
+            th.appendChild(hText);
+            row.appendChild(th);
+            for(r = 0; r < 1; r++){
+                cell = document.createElement('td');
+                cellText = document.createTextNode('hi');
+
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }
+            tblBody.appendChild(row);
+        }
+        tbl.appendChild(tblBody);
+        scoreBoard.appendChild(tbl);
+        tbl.setAttribute('border', '2');
+    }
     displayMessage(msg) {
         let messageArea;
         messageArea = document.getElementById("messageArea");
