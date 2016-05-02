@@ -62,7 +62,6 @@ class Board {
                 locations = this.generateShip(ship);
             }
             ship.locations = locations;
-            console.log(ship.locations);
         }
     }
     generateShip(ship) {

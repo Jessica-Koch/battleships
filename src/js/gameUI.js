@@ -41,7 +41,6 @@ class GameUI {
             cell = document.getElementById(loc);    
             cell.setAttribute('class', 'sunk');
             cell.setAttribute('disabled', true);    
-            cell.appendChild(document.createTextNode(ship.name + ' SUNK'));
         });
     }
 }
