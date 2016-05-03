@@ -138,7 +138,8 @@ class Board {
             }
             this._gameUI.displayMessage("You sank my " + ship.name);
             this.shipsSunk.push(ship);
-            this._gameUI.displaySunk(ship)
+            this._gameUI.displaySunk(ship);
+            this._gameUI.drawScoreBoard(ship);
                 // otherwise the ship is sunk
             return true;
         }

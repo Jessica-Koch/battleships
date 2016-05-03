@@ -5,7 +5,7 @@ class GameUI {
     }
     drawBoard() {
         let board, row, cells, cell;
-        board = document.getElementById("p1-board");
+        board = document.getElementById('p1-board');
         // create board
         this._board.grid.forEach(function(rowData) {
             row = document.createElement("tr");
@@ -20,7 +20,7 @@ class GameUI {
         });
     }
     drawScoreBoard(){
-        let scoreBoard, tbl, tblBody, t, row, r, cell, cellText, th, hText;
+        let scoreBoard, tbl, tblBody, t, row, r, cell, shipStatus, th, hText;
         scoreBoard = document.getElementById('score');
         tbl = document.createElement('table');
         tblBody = document.createElement('tbody');
@@ -35,9 +35,11 @@ class GameUI {
             row.appendChild(th);
             for(r = 0; r < 1; r++){
                 cell = document.createElement('td');
-                cellText = document.createTextNode('hi');
-
-                cell.appendChild(cellText);
+                cell.setAttribute('class', 'alive');
+                cell.setAttribute('id', this._board.ships[r].name);
+                shipStatus = document.createTextNode('ALIVE');
+                // shipStatus.style.color = 'red'
+                cell.appendChild(shipStatus);
                 row.appendChild(cell);
             }
             tblBody.appendChild(row);
@@ -46,28 +48,36 @@ class GameUI {
         scoreBoard.appendChild(tbl);
         tbl.setAttribute('border', '2');
     }
+    updateScoreBoard(ship){
+        let ship, sunkenShip;
+        for (var i = 0; i < this._board.ships.length; i++) {
+            ship = this._board.ships[i];
+        }
+        sunkenShip = document.getElementById(ship.name);
+        sunkenShip.textContent = 'SUNK';
+    }
     displayMessage(msg) {
         let messageArea;
-        messageArea = document.getElementById("messageArea");
+        messageArea = document.getElementById('messageArea');
         messageArea.innerHTML = msg;
     }
     displayHit(guess) {
         let cell;
         cell = document.getElementById(guess);
-        cell.setAttribute("class", "hit");
+        cell.setAttribute('class', 'hit');
     }
     displayMiss(guess) {
         let cell;
         cell = document.getElementById(guess);
-        cell.setAttribute("class", "miss");
+        cell.setAttribute('class', 'miss');
     }
     displaySunk(ship, guess){
         let cell;
         // cells = document.getElementById(ship.locations);
+        this.updateScoreBoard();
         ship.locations.forEach( function(loc) {
             cell = document.getElementById(loc);    
             cell.setAttribute('class', 'sunk');
-            cell.setAttribute('disabled', true);    
         });
     }
 }
