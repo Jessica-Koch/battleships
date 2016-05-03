@@ -50,14 +50,6 @@ class GameUI {
         scoreBoard.appendChild(tbl);
         tbl.setAttribute('border', '2');
     }
-    // updateScoreBoard(ship){
-    //     let  sunkenShip;
-    //     for (var i = 0; i < this._board.ships.length; i++) {
-    //         ship = this._board.ships[i];
-    //     }
-    //     sunkenShip = document.getElementById(ship.name);
-    //     sunkenShip
-    // }
     displayMessage(msg) {
         let messageArea;
         messageArea = document.getElementById('messageArea');
