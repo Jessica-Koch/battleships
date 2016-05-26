@@ -1,16 +1,17 @@
-import GameUI from "./gameUI.js";
-import Game from "./game.js";
-import Board from "./board.js";
+import GameUI from './gameUI.js';
+import Game from './game.js';
+import Board from './board.js';
 
 let gameBoard = new Board(10, 10, gameUI);
 let gameUI = new GameUI(gameBoard);
 
 function init() {
     let cells, cell, c;
-    cells = document.getElementsByTagName("td");
+    cells = document.querySelectorAll("td.gameBoard");
     for (c = 0; c < cells.length; c++) {
         cell = cells[c];
-        cell.addEventListener("click", handleFiringClick);
+        cell.addEventListener('click', handleFiringClick);
+        
     }
 }
 
@@ -23,7 +24,7 @@ function handleFiringClick(e) {
     game.processGuess(guess);
 
     if (gameUI.displayHit) {
-        this.removeEventListener('click', handleFiringClick);
+            this.removeEventListener('click', handleFiringClick);
     }
 }
 

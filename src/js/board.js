@@ -58,10 +58,11 @@ class Board {
         for (var i = 0; i < this.ships.length; i++) {
             ship = this.ships[i];
             locations = this.generateShip(ship);
-            if (this.collision(locations)){
+            while (this.collision(locations)) {
                 locations = this.generateShip(ship);
             }
             ship.locations = locations;
+            console.log('FINAL LOCATIONS! ' + ship.name + ': ' + ship.locations)
         }
     }
     generateShip(ship) {
@@ -98,8 +99,10 @@ class Board {
             ship = this.ships[i];
 
             // loop through each ship's location array 
-            for(j = 0; j < newShipLocations.length; j++) {
-                if (ship.locations.indexOf(newShipLocations[j]) >= 0) {
+            // for(j = 0; j < newShipLocations.length; j++) {
+            for(j = 0; j < ship.locations.length; j++) {
+                if (ship.locations.includes(newShipLocations[j])) {
+                    console.log('COLLISION: ' + ship.name + ': ' + newShipLocations[j]);
                     return true;
                 }
             }

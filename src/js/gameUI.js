@@ -4,17 +4,18 @@ class GameUI {
         this._board = board;
     }
     drawBoard() {
-        let board, row, cells, cell;
+        let board, row, cells, boardCell;
         board = document.getElementById('p1-board');
         // create board
         this._board.grid.forEach(function(rowData) {
             row = document.createElement("tr");
             rowData.forEach(function(cellData) {
-                cell = document.createElement("td");
-                cell.appendChild(document.createTextNode(cellData.name));
-                cell.setAttribute("id", cellData.name);
+                boardCell = document.createElement("td");
+                boardCell.setAttribute('class', 'gameBoard');
+                boardCell.appendChild(document.createTextNode(cellData.name));
+                boardCell.setAttribute("id", cellData.name);
                 // cell.addEventListener('click', board.handleFiringEvent);
-                row.appendChild(cell);
+                row.appendChild(boardCell);
             });
             board.appendChild(row);
         });
@@ -49,6 +50,7 @@ class GameUI {
         tbl.appendChild(tblBody);
         scoreBoard.appendChild(tbl);
         tbl.setAttribute('border', '2');
+        
     }
     displayMessage(msg) {
         let messageArea;
