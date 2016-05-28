@@ -61,8 +61,7 @@ class Board {
             while (this.collision(locations)) {
                 locations = this.generateShip(ship);
             }
-            ship.locations = locations;
-            console.log('FINAL LOCATIONS! ' + ship.name + ': ' + ship.locations)
+
         }
     }
     generateShip(ship) {
@@ -102,7 +101,6 @@ class Board {
             // for(j = 0; j < newShipLocations.length; j++) {
             for(j = 0; j < ship.locations.length; j++) {
                 if (ship.locations.includes(newShipLocations[j])) {
-                    console.log('COLLISION: ' + ship.name + ': ' + newShipLocations[j]);
                     return true;
                 }
             }
