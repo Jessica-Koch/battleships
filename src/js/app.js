@@ -1,9 +1,9 @@
 import GameUI from './gameUI.js';
 import Game from './game.js';
-import Board from './board.js';
+import BoardController from './boardController.js';
 
-let gameBoard = new Board(10, 10, gameUI);
-let gameUI = new GameUI(gameBoard);
+let boardController = new BoardController(10, 10, gameUI);
+let gameUI = new GameUI(boardController);
 
 function init() {
     let cells, cell, c;
@@ -30,5 +30,5 @@ function handleFiringClick(e) {
 
 gameUI.drawBoard();
 gameUI.drawScoreBoard();
-gameBoard.generateShipLocations();
-let game = new Game(gameBoard, gameUI);
+boardController.generateShipLocations();
+let game = new Game(boardController, gameUI);

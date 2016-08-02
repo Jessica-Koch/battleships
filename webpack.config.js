@@ -1,7 +1,7 @@
-var path = require("path");
-var webpack = require("webpack");
-var buildPath = path.resolve(__dirname, "build");
-var mainPath = path.resolve(__dirname, "src", "main.js");
+var path = require("path"),
+    webpack = require("webpack"),
+    buildPath = path.resolve(__dirname, "build"),
+    mainPath = path.resolve(__dirname, "src", "main.js");
 
 module.exports = {
     entry: [

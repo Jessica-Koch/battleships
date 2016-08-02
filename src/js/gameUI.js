@@ -1,13 +1,13 @@
 class GameUI {
-    constructor(board) {
+    constructor(boardController) {
         // dont need the board from UI class, should be injected directly 
-        this._board = board;
+        this._boardController = boardController;
     }
     drawBoard() {
         let board, row, cells, boardCell;
         board = document.getElementById('p1-board');
         // create board
-        this._board.grid.forEach(function(rowData) {
+        this._boardController.grid.forEach(function(rowData) {
             row = document.createElement("tr");
             rowData.forEach(function(cellData) {
                 boardCell = document.createElement("td");
@@ -30,7 +30,7 @@ class GameUI {
         scoreBoard.appendChild(header);
 
         // put in the rows for the table 
-        this._board.ships.forEach(function(rowData){
+        this._boardController.ships.forEach(function(rowData){
             row = document.createElement('tr');    
             th = document.createElement('th');
             hText = document.createTextNode(rowData.name);

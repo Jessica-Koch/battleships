@@ -1,8 +1,8 @@
 import GameUI from "./gameUI.js";
 
 class Game {
-    constructor(board, gameUI) {
-        this._board = board;
+    constructor(boardController, gameUI) {
+        this._boardController = boardController;
         this._gameUI = gameUI;
         this.guesses = 0;
     }    
@@ -10,8 +10,8 @@ class Game {
         let hit, ship, s, sunk, sunkenShips;
         if (guess) {
             this.guesses++;
-            hit = this._board.fire(guess);
-            if (hit && this._board.ships.length === 0) {
+            hit = this._boardController.fire(guess);
+            if (hit && this._boardController.ships.length === 0) {
                 this._gameUI.displayMessage("You sank all my battleships, in " + this.guesses + " guesses");
             }
 
