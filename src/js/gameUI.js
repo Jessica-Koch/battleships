@@ -15,7 +15,7 @@ class GameUI {
         this._cameraController = null;
 
         this.setup();
-        
+        // this.initObjects();
     }
 
     setup() {
@@ -29,6 +29,8 @@ class GameUI {
             antialias: true
         });
         this._renderer.setSize(viewWidth, viewHeight);
+        // Enable shadow rendering
+        this._renderer.shadowMap.enabled = true;
 
         this._scene = new THREE.Scene();
 
@@ -38,6 +40,21 @@ class GameUI {
         this._scene.add(this._camera);
 
         containerEl.appendChild(this._renderer.domElement);
+    }
+
+    initObjects() {
+        let cube;
+        cube = new THREE.Mesh(new THREE.CubeGeometry(50, 50, 50));
+        this._scene.add(cube);
+
+        this.onAnimationFrame();
+    }
+
+    onAnimationFrame() {
+        requestAnimationFrame(this.onAnimationFrame.bind(this));
+        this._cameraController.update();
+
+        this._renderer.render(this._scene, this._camera)
     }
 
     drawBoard() {

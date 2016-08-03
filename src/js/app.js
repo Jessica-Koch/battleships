@@ -29,6 +29,8 @@ function handleFiringClick(e) {
 }
 
 gameUI.drawBoard();
+gameUI.initObjects();
+
 gameUI.drawScoreBoard();
 boardController.generateShipLocations();
 let game = new Game(boardController, gameUI);

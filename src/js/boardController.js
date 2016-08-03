@@ -11,7 +11,7 @@ class Board {
         this._height = height;
         this.grid = new Array(this._width);
         this.numShips = 5;
-        this._gameUI = new GameUI(this);
+        // this._gameUI = new GameUI(this);
         this.shipsSunk = [];
         this.ships = [{
             name: "Aircraft Carrier",
