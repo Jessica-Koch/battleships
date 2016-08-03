@@ -29,6 +29,7 @@
     "css-loader": "^0.23.1",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.5.1",
+    "three": "^0.79.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
   },

@@ -1,10 +1,48 @@
+import * as THREE from "three";
+
+// importing a module with options isn't supported yet so we need to require orbitControls
+const OrbitControls  = require('three-orbit-controls')(THREE);
+
 class GameUI {
     constructor(boardController) {
         // dont need the board from UI class, should be injected directly 
         this._boardController = boardController;
+
+        // setup threeJs boilerplate
+        this._renderer = null;
+        this._camera = null;
+        this._scene = null;
+        this._cameraController = null;
+
+        this.setup();
+        
     }
+
+    setup() {
+        let viewWidth, viewHeight, containerEl, cameraController;
+
+        containerEl = document.getElementById("threeBoardContainer");
+        viewHeight = containerEl.offsetHeight;
+        viewWidth = containerEl.offsetWidth;
+
+        this._renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
+        this._renderer.setSize(viewWidth, viewHeight);
+
+        this._scene = new THREE.Scene();
+
+        this._camera = new THREE.PerspectiveCamera(35, viewWidth / viewHeight, 1, 1000);
+        this._camera.position.set(0, 120, 150);
+        this._cameraController = new OrbitControls(this._camera, containerEl);
+        this._scene.add(this._camera);
+
+        containerEl.appendChild(this._renderer.domElement);
+    }
+
     drawBoard() {
         let board, row, cells, boardCell;
+
         board = document.getElementById('p1-board');
         // create board
         this._boardController.grid.forEach(function(rowData) {

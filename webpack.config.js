@@ -38,10 +38,5 @@ module.exports = {
             extensions: ["", ".js", ".styl"],
             modulesDirectories: ["src", "node_modules"]
         }
-    },
-    plugins: [
-        new webpack.ProvidePlugin({
-            "THREE": "three"
-        })
-    ]
+    }
 };
